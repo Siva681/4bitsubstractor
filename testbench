@@ -1,0 +1,20 @@
+module bitsubtractor_tb();
+  reg [3:0] a, b;
+  wire [3:0] diff;
+  wire borrow;
+
+  bitsubtractor uut(a, b, diff, borrow);
+
+  initial begin
+ $monitor("t=%0t | a=%b(%0d) | b=%b(%0d) | diff=%b(%0d) | borrow=%b",
+             $time, a, a, b, b, diff, diff, borrow);
+
+    a=4'b0000; b=4'b0000; #10;
+    a=4'b0001; b=4'b0010; #10;
+    a=4'b1111; b=4'b0001; #10;
+    a=4'b1010; b=4'b0110; #10;
+    a=4'b0111; b=4'b1111; #10;
+
+    $finish;
+  end
+endmodule
